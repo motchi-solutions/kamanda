@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { HomePage } from "@/components/pages/home/home-page";
 
 export const metadata: Metadata = {
-  title: { absolute: "Saudi Arabia | Kamanda Management LLC" },
+  title: { absolute: "Home | Kamanda Management LLC" },
   description:
     "Kamanda Management LLC delivers project management, construction support, technology and AI adoption, and business solutions in Saudi Arabia.",
   alternates: {
