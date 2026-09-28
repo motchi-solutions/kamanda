@@ -4,11 +4,12 @@ export function Contact() {
   return (
     <section
       id="contact"
+      tabIndex={-1}
       className="section bg-white"
       aria-labelledby="contact-heading"
     >
-      <Reveal className="site-container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-        <div>
+      <div className="site-container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+        <Reveal direction="left">
           <p className="eyebrow">Contact Kamanda</p>
           <h2 id="contact-heading" className="section-heading mt-4">
             Project and Business Enquiries
@@ -17,8 +18,8 @@ export function Contact() {
             Tell us what you want to achieve, your expected timeline, and where
             you need support.
           </p>
-        </div>
-        <div className="min-w-0 rounded-xl border border-carbon/15 bg-snow p-6 sm:p-8">
+        </Reveal>
+        <Reveal direction="right" className="surface-card min-w-0 rounded-xl border border-carbon/15 bg-snow p-6 sm:p-8">
           <div
             id="contact-status"
             className="rounded-lg border border-navy/15 bg-white p-5"
@@ -182,8 +183,8 @@ export function Contact() {
               </button>
             </fieldset>
           </form>
-        </div>
-      </Reveal>
+        </Reveal>
+      </div>
     </section>
   );
 }

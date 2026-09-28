@@ -1,82 +1,111 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { LuMenu, LuX } from "react-icons/lu";
+import { useDismiss } from "@/hooks/use-dismiss";
+import { useScrollLock } from "@/hooks/use-scroll-lock";
 import { NavLink, type NavItem } from "./nav-link";
+import { BrandLink } from "./brand-link";
 
-export function MobileMenu({ items }: { items: NavItem[] }) {
+export function MobileMenu({ items, homeHref }: { items: NavItem[]; homeHref: string }) {
   const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
   const panelId = useId();
+  const titleId = useId();
+
+  const closeMenu = () => {
+    // Release native inertness before a link navigates, including local hashes.
+    dialogRef.current?.close();
+    setOpen(false);
+  };
+
+  useScrollLock(open);
+  useDismiss({ open, boundaryRef: panelRef, onDismiss: closeMenu });
 
   useEffect(() => {
     if (!open) return;
+    const dialog = dialogRef.current;
+    if (!dialog) return;
     const desktop = window.matchMedia("(min-width: 768px)");
     const closeOnDesktop = () => {
-      if (desktop.matches) setOpen(false);
-    };
-    const closeOutside = (event: PointerEvent) => {
-      if (
-        event.target instanceof Node &&
-        !ref.current?.contains(event.target)
-      ) {
+      if (desktop.matches) {
+        dialog.close();
         setOpen(false);
       }
     };
-    document.addEventListener("pointerdown", closeOutside);
+    dialog.showModal();
+    closeRef.current?.focus({ preventScroll: true });
     desktop.addEventListener("change", closeOnDesktop);
     return () => {
-      document.removeEventListener("pointerdown", closeOutside);
       desktop.removeEventListener("change", closeOnDesktop);
+      dialog.close();
     };
   }, [open]);
 
   return (
-    <div
-      ref={ref}
-      className="mobile-menu md:hidden"
-      data-open={open}
-      onKeyDown={(event) => {
-        if (event.key === "Escape" && open) {
-          event.preventDefault();
-          setOpen(false);
-          buttonRef.current?.focus();
-        }
-      }}
-      onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
-      }}
-    >
+    <div className="mobile-menu md:hidden" data-open={open}>
       <button
-        ref={buttonRef}
         type="button"
         className="mobile-menu-toggle rounded-md border border-carbon/20 px-4 py-3 text-sm font-semibold"
+        aria-label="Open navigation menu"
+        aria-haspopup="dialog"
         aria-expanded={open}
         aria-controls={panelId}
-        onClick={() => setOpen((previous) => !previous)}
+        onClick={() => setOpen(true)}
       >
-        <span className="relative h-4 w-4" aria-hidden="true">
-          <LuMenu className="menu-open-icon h-4 w-4" />
-          <LuX className="menu-close-icon h-4 w-4" />
+        <span className="menu-icon" aria-hidden="true">
+          <span />
+          <span />
+          <span />
         </span>
         Menu
       </button>
-      <nav
+      <dialog
+        ref={dialogRef}
         id={panelId}
-        aria-label="Mobile navigation"
-        aria-hidden={!open}
-        inert={!open}
-        className="mobile-menu-panel absolute inset-x-0 top-full border-b border-carbon/10 bg-snow p-6 shadow-lg"
+        className="mobile-menu-dialog"
+        aria-labelledby={titleId}
+        onCancel={(event) => {
+          event.preventDefault();
+          closeMenu();
+        }}
+        onClose={() => {
+          // Ignore a queued close event if the menu was already reopened.
+          if (dialogRef.current?.open) return;
+          setOpen(false);
+        }}
       >
-        <ul className="grid gap-2">
-          {items.map((item) => (
-            <li key={item.label}>
-              <NavLink item={item} mobile onClick={() => setOpen(false)} />
-            </li>
-          ))}
-        </ul>
-      </nav>
+        <div ref={panelRef} className="mobile-menu-sheet">
+          <div className="site-container flex min-h-20 items-center justify-between gap-4 border-b border-carbon/10">
+            <h2 id={titleId} className="sr-only">Mobile navigation</h2>
+            <BrandLink href={homeHref} onClick={closeMenu} />
+            <button
+              ref={closeRef}
+              type="button"
+              className="mobile-menu-toggle rounded-md border border-carbon/20 px-4 py-3 text-sm font-semibold"
+              aria-label="Close navigation menu"
+              onClick={closeMenu}
+            >
+              <span className="menu-icon" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </span>
+              Close
+            </button>
+          </div>
+          <nav aria-label="Mobile navigation" className="site-container py-6">
+            <ul className="grid gap-2">
+              {items.map((item) => (
+                <li key={item.label}>
+                  <NavLink item={item} mobile onClick={closeMenu} />
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      </dialog>
       <noscript>
         <nav
           aria-label="Mobile navigation without JavaScript"

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { Reveal } from "@/components/ui/reveal";
+import { REVEAL_STAGGER_MS } from "@/lib/motion";
 
 const metrics = [
   {
@@ -88,9 +90,10 @@ export function MetricCounters() {
       ref={ref}
       className="grid gap-x-8 gap-y-10 sm:grid-cols-2 xl:grid-cols-4"
     >
-      {metrics.map((metric) => (
-        <div
+      {metrics.map((metric, index) => (
+        <Reveal
           key={metric.label}
+          delay={index * REVEAL_STAGGER_MS}
           className="flex min-w-0 flex-col border-t border-carbon/15 pt-7"
         >
           <dt className="order-2 mt-5 max-w-60 text-sm leading-6 text-carbon/65">
@@ -107,7 +110,7 @@ export function MetricCounters() {
               </span>
             </span>
           </dd>
-        </div>
+        </Reveal>
       ))}
     </dl>
   );

@@ -5,6 +5,7 @@ import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { getBaseUrl } from "@/lib/site";
 
 import "./globals.css";
+import { ContactNavigationProvider } from "@/components/ui/contact-navigation";
 import { SiteIntro } from "@/components/layout/site-intro";
 
 const manrope = Manrope({
@@ -95,7 +96,9 @@ export default function RootLayout({
           Skip to content
         </a>
         <SiteIntro />
-        <div className="site-content">{children}</div>
+        <ContactNavigationProvider>
+          <div className="site-content">{children}</div>
+        </ContactNavigationProvider>
       </body>
     </html>
   );

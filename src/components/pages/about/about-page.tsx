@@ -26,8 +26,9 @@ export function AboutPage({ region }: AboutPageProps) {
           imageSizes="(max-width: 959px) 960px, (max-width: 1247px) 1248px, 100vw"
           imagePosition="lower"
           primaryCta={{ label: "Our Services", href: "/services" }}
+          nextSectionHref="#about-introduction"
         />
-        <section className="section bg-white" aria-labelledby="about-introduction-heading">
+        <section id="about-introduction" className="section bg-white" aria-labelledby="about-introduction-heading">
           <div className="site-container grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
             <Reveal direction="left">
               <p className="eyebrow">Who We Are</p>

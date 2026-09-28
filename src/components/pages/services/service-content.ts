@@ -1,3 +1,9 @@
+export const projectManagementImage = {
+  src: "/services/project-management.png",
+  alt: "Business team discussing a project around a meeting table",
+  position: "object-center",
+};
+
 export const services = [
   {
     id: "technology-ai",
@@ -75,6 +81,7 @@ export const services = [
   },
   {
     id: "project-management",
+    image: projectManagementImage,
     title: "Project Management",
     eyebrow: "Planning through Closeout",
     description:
@@ -145,6 +152,6 @@ export const services = [
           "Reviewing business processes and coordinating support for specific operational needs.",
       },
     ],
-    note: "We support evaluation and collaboration; commercial decisions remain with the organizations involved.",
+    note: "We help organizations evaluate opportunities and coordinate collaboration, while final business decisions remain with the parties involved.",
   },
 ];

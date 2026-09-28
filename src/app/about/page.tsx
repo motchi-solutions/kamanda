@@ -5,7 +5,7 @@ import { AboutPage } from "@/components/pages/about/about-page";
 import { getCurrentRegion } from "@/lib/region-server";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: { absolute: "About Us | Kamanda Management LLC" },
   description:
     "Learn about Kamanda Management LLC and our practical approach to management, technology, and business support.",
   alternates: {

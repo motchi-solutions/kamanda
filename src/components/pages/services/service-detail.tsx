@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
 import { services } from "./service-content";
 
@@ -23,12 +24,22 @@ export function ServiceDetail({
             {service.title}
           </h2>
           <p className="body-copy mt-7">{service.description}</p>
+          {service.image && (
+            <div className="relative mt-8 aspect-video overflow-hidden rounded-xl">
+              <Image
+                src={service.image.src}
+                alt={service.image.alt}
+                fill
+                sizes="(min-width: 1280px) 620px, (min-width: 1024px) 50vw, 100vw"
+                className={`object-cover ${service.image.position}`}
+              />
+            </div>
+          )}
           <h3 className="mt-8 text-2xl">Our Role</h3>
           <p className="body-copy mt-3">{service.approach}</p>
         </Reveal>
         <Reveal
           direction={index % 2 === 0 ? "right" : "left"}
-          delay={100}
           className={`content-panel bg-[#f1f2ef] ${index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""}`}
         >
           <h3 className="text-2xl sm:text-3xl">Areas of Support</h3>

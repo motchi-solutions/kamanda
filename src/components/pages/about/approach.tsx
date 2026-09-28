@@ -1,3 +1,4 @@
+import { REVEAL_STAGGER_MS } from "@/lib/motion";
 import { Reveal } from "@/components/ui/reveal";
 
 const steps = [
@@ -39,9 +40,9 @@ export function Approach() {
           {steps.map((step, index) => (
             <li key={step.title} className="min-w-0">
               <Reveal
-                delay={index * 160}
+                delay={index * REVEAL_STAGGER_MS}
                 rootMargin="0px 0px -80px 0px"
-                className="h-full rounded-xl border border-carbon/10 bg-snow p-6"
+                className="surface-card h-full rounded-xl border border-carbon/10 bg-snow p-6"
               >
                 <p
                   aria-hidden="true"

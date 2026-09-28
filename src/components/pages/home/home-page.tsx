@@ -22,13 +22,15 @@ export function HomePage({ region, heroImage, heroAlt }: HomePageProps) {
           title="Management, Technology and Business Solutions"
           highlight="Technology"
           panelWidth="wide"
-          description="We help organizations in the UAE and Saudi Arabia plan projects, coordinate construction, adopt technology, and find specialist business partners."
+          description="We help organizations regionally and globally plan projects, coordinate construction, adopt technology, and find specialist business partners."
           imageSrc={heroImage}
+          imageAspectRatio={region === "ae" ? 3 : 1672 / 941}
           imageAlt={heroAlt}
           primaryCta={{ label: "Services", href: "#services" }}
-          secondaryCta={{ label: "Contact Us", href: "#contact" }}
+          secondaryCta={{ label: "Contact Us", href: "#contact", hideOnMobile: true }}
+          nextSectionHref="#services"
         />
-        <ServicesPreview region={region} />
+        <ServicesPreview />
         <Metrics />
         <Contact />
       </main>
