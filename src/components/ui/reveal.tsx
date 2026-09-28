@@ -7,12 +7,14 @@ export function Reveal({
   className = "",
   direction = "up",
   delay = 0,
+  sideBySideFrom = "lg",
   rootMargin = "0px 0px -80px 0px",
 }: {
   children: ReactNode;
   className?: string;
   direction?: "up" | "left" | "right";
   delay?: number;
+  sideBySideFrom?: "sm" | "md" | "lg";
   rootMargin?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -33,7 +35,8 @@ export function Reveal({
       element.contains(document.activeElement)
     ) return;
 
-    const desktop = window.matchMedia("(min-width: 1024px)").matches;
+    const breakpoint = { sm: 640, md: 768, lg: 1024 }[sideBySideFrom];
+    const desktop = window.matchMedia(`(min-width: ${breakpoint}px)`).matches;
     const transform = desktop && direction !== "up"
       ? `translateX(${direction === "left" ? -24 : 24}px)`
       : `translateY(${desktop ? 18 : 10}px)`;
@@ -43,8 +46,8 @@ export function Reveal({
         { opacity: 1, transform: "translate(0, 0)" },
       ],
       {
-        duration: desktop ? 750 : 550,
-        delay: desktop ? Math.min(Math.max(delay, 0), 600) : 0,
+        duration: 650,
+        delay: Math.min(Math.max(delay, 0), 420),
         fill: "both",
         easing: "cubic-bezier(0.22, 1, 0.36, 1)",
       },
@@ -87,7 +90,7 @@ export function Reveal({
       window.removeEventListener("beforeprint", finish);
       animation.cancel();
     };
-  }, [direction, delay, rootMargin]);
+  }, [direction, delay, rootMargin, sideBySideFrom]);
   return (
     <div ref={ref} className={className}>
       {children}

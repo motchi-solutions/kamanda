@@ -24,6 +24,7 @@ export function ServicesPage({ region }: ServicesPageProps) {
           imageSizes="(max-width: 1919px) 1920px, 100vw"
           imagePosition="right"
           primaryCta={{ label: "Explore Services", href: "#technology-ai" }}
+          nextSectionHref="#technology-ai"
         />
         <ServicesNavigation
           items={services.map(({ id, title }) => ({ id, title }))}

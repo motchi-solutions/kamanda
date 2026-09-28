@@ -1,7 +1,10 @@
 import { DirectionalArrow } from "@/components/ui/directional-arrow";
 import Image from "next/image";
 import Link from "next/link";
+import { REVEAL_STAGGER_MS } from "@/lib/motion";
 import { Reveal } from "@/components/ui/reveal";
+
+import { projectManagementImage } from "@/components/pages/services/service-content";
 
 type ServicePreview = {
   id: string;
@@ -35,11 +38,7 @@ const services: ServicePreview[] = [
     id: "project-management",
     title: "Project Management",
     category: "Scope, Schedules, and Delivery Oversight",
-    image: {
-      src: "/services/project-management/project-management.jpeg",
-      alt: "Business team discussing a project around a meeting table",
-      position: "object-center",
-    },
+    image: projectManagementImage,
   },
   {
     id: "business-solutions",
@@ -53,7 +52,7 @@ const services: ServicePreview[] = [
   },
 ];
 
-export function ServicesPreview({ region }: { region: "ae" | "sa" }) {
+export function ServicesPreview() {
   return (
     <section
       id="services"
@@ -61,8 +60,8 @@ export function ServicesPreview({ region }: { region: "ae" | "sa" }) {
       aria-labelledby="services-preview-heading"
     >
       <div className="site-container">
-        <Reveal className="grid gap-6 md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-16">
-          <div>
+        <div className="grid gap-6 md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-16">
+          <Reveal direction="left" sideBySideFrom="md">
             <p className="eyebrow">What We Do</p>
             <h2
               id="services-preview-heading"
@@ -70,17 +69,21 @@ export function ServicesPreview({ region }: { region: "ae" | "sa" }) {
             >
               Our Consultancy Services
             </h2>
-          </div>
-          <p className="body-copy">
-            Choose the support you need, from defining requirements and
-            coordinating teams to overseeing implementation.
-          </p>
-        </Reveal>
+          </Reveal>
+          <Reveal direction="right" sideBySideFrom="md">
+            <p className="body-copy">
+              Choose the support you need, from defining requirements and
+              coordinating teams to overseeing implementation.
+            </p>
+          </Reveal>
+        </div>
         <div className="services-preview-grid mt-12 grid gap-6 md:grid-cols-2">
           {services.map((service, index) => (
             <Reveal
               key={service.id}
               direction={index % 2 === 0 ? "left" : "right"}
+              sideBySideFrom="md"
+              delay={index * REVEAL_STAGGER_MS}
               rootMargin="0px 0px -80px 0px"
             >
               <article className="service-card group h-full overflow-hidden rounded-xl border border-carbon/10 bg-white">
@@ -92,11 +95,7 @@ export function ServicesPreview({ region }: { region: "ae" | "sa" }) {
                 >
                   <div className="service-image relative aspect-[16/9] shrink-0 overflow-hidden bg-[#eeefed]">
                     <Image
-                      src={
-                        region === "sa" && service.id === "project-management"
-                          ? "/services/project-management/project-management-sa.png"
-                          : (service.image?.src ?? "/icon.svg")
-                      }
+                      src={service.image?.src ?? "/icon.svg"}
                       alt={service.image?.alt ?? ""}
                       fill
                       sizes="(min-width: 1280px) 620px, (min-width: 768px) 50vw, 100vw"

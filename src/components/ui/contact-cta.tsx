@@ -1,5 +1,5 @@
 import { DirectionalArrow } from "@/components/ui/directional-arrow";
-import Link from "next/link";
+import { ContactLink } from "./contact-navigation";
 import { Reveal } from "./reveal";
 
 export function ContactCta({ region }: { region: "ae" | "sa" }) {
@@ -8,8 +8,8 @@ export function ContactCta({ region }: { region: "ae" | "sa" }) {
       className="section contact-cta bg-navy text-white"
       aria-labelledby="next-step-heading"
     >
-      <Reveal className="site-container flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-        <div>
+      <div className="site-container flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+        <Reveal direction="left" sideBySideFrom="md">
           <p className="eyebrow text-gold">Next Steps</p>
           <h2
             id="next-step-heading"
@@ -22,15 +22,17 @@ export function ContactCta({ region }: { region: "ae" | "sa" }) {
             specialist expertise required. This gives us a starting point for
             defining the scope.
           </p>
-        </div>
-        <Link
-          href={`/${region}#contact`}
-          className="btn arrow-link shrink-0 self-start bg-white text-navy hover:bg-snow md:self-center"
-          data-button
-        >
-          Contact Us <DirectionalArrow direction="up-right" />
-        </Link>
-      </Reveal>
+        </Reveal>
+        <Reveal direction="right" sideBySideFrom="md" className="shrink-0 self-start md:self-center">
+          <ContactLink
+            href={`/${region}#contact`}
+            className="btn arrow-link bg-white text-navy hover:bg-snow focus-visible:bg-snow"
+            data-button
+          >
+            Contact Us <DirectionalArrow direction="up-right" />
+          </ContactLink>
+        </Reveal>
+      </div>
     </section>
   );
 }
