@@ -39,8 +39,6 @@ export default function SaudiArabiaPage() {
       region="sa"
       heroImage="/images/hero-ksa.png"
       heroAlt="Riyadh skyline"
-      heroTitle="Management, Technology and Business Solutions"
-      heroDescription="Kamanda Management LLC supports organizations in Saudi Arabia with project management, construction support, technology and AI adoption, and specialized business solutions."
     />
   );
 }

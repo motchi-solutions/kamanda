@@ -1,96 +1,132 @@
+import { DirectionalArrow } from "@/components/ui/directional-arrow";
 import Image from "next/image";
 import Link from "next/link";
+import { Reveal } from "@/components/ui/reveal";
 
-type ServicesPreviewProps = {
-  region: "ae" | "sa";
-};
-
-type Service = {
+type ServicePreview = {
   id: string;
   title: string;
-  description: string;
-  imageSrc: string;
-  imageAlt: string;
+  category: string;
+  image?: { src: string; alt: string; position: string };
 };
 
-// Replace these skyline placeholders with final licensed or owned service imagery later.
-const services: Service[] = [
+const services: ServicePreview[] = [
   {
     id: "technology-ai",
-    title: "Technology and AI Adoption",
-    description:
-      "Practical technology and AI support that helps teams work with more clarity and confidence.",
-    imageSrc: "/brand/kamanda-logo.png",
-    imageAlt: "",
+    title: "Technology & AI Adoption",
+    category: "Adoption Planning and Implementation Oversight",
+    image: {
+      src: "/services/technology-ai.jpg",
+      alt: "Professional reviewing analytics charts on a laptop",
+      position: "object-center",
+    },
   },
   {
     id: "construction-support",
     title: "Construction Support",
-    description:
-      "Reliable coordination and support for complex construction environments and delivery teams.",
-    imageSrc: "/brand/kamanda-logo.png",
-    imageAlt: "",
+    category: "Site Coordination, Documentation, and Reporting",
+    image: {
+      src: "/services/construction-support.jpg",
+      alt: "Construction professionals inspecting a building site",
+      position: "object-[center_70%]",
+    },
   },
   {
     id: "project-management",
     title: "Project Management",
-    description:
-      "Structured project leadership that keeps priorities, stakeholders, and outcomes aligned.",
-    imageSrc: "/brand/kamanda-logo.png",
-    imageAlt: "",
+    category: "Scope, Schedules, and Delivery Oversight",
+    image: {
+      src: "/services/project-management/project-management.jpeg",
+      alt: "Business team discussing a project around a meeting table",
+      position: "object-center",
+    },
   },
   {
     id: "business-solutions",
     title: "Business Solutions",
-    description:
-      "Specialized business support shaped around the operational needs of growing organizations.",
-    imageSrc: "/brand/kamanda-logo.png",
-    imageAlt: "",
+    category: "Partner Sourcing and Business Introductions",
+    image: {
+      src: "/services/business-solutions.jpg",
+      alt: "Business professional reviewing charts on a tablet alongside planning documents",
+      position: "object-center",
+    },
   },
 ];
 
-export function ServicesPreview({ region }: ServicesPreviewProps) {
-  const serviceImageClass = region === "sa" ? "object-[center_35%]" : "object-center";
-
+export function ServicesPreview({ region }: { region: "ae" | "sa" }) {
   return (
-    <section id="services" className="section bg-snow">
+    <section
+      id="services"
+      className="section bg-snow"
+      aria-labelledby="services-preview-heading"
+    >
       <div className="site-container">
-        <div className="max-w-2xl">
-          <p className="eyebrow">What we do</p>
-          <h2 className="section-heading mt-4">Capability with a practical point of view.</h2>
-          <p className="body-copy mt-6">
-            We bring management discipline, technical fluency, and grounded
-            operational support to the work that moves organizations forward.
-          </p>
-        </div>
-
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
-          {services.map((service) => (
-            <article
-              key={service.id}
-              className="overflow-hidden border border-carbon/10 bg-white"
+        <Reveal className="grid gap-6 md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-16">
+          <div>
+            <p className="eyebrow">What We Do</p>
+            <h2
+              id="services-preview-heading"
+              className="section-heading mt-4 max-w-xl"
             >
-              <div className="relative aspect-[16/9]">
-                <Image
-                  src={service.imageSrc}
-                  alt={service.imageAlt}
-                  fill
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className={`object-cover ${serviceImageClass}`}
-                />
-              </div>
-              <div className="p-6 sm:p-8">
-                <h3 className="font-display text-3xl text-carbon">{service.title}</h3>
-                <p className="mt-4 leading-7 text-carbon/70">{service.description}</p>
+              Our Consultancy Services
+            </h2>
+          </div>
+          <p className="body-copy">
+            Choose the support you need, from defining requirements and
+            coordinating teams to overseeing implementation.
+          </p>
+        </Reveal>
+        <div className="services-preview-grid mt-12 grid gap-6 md:grid-cols-2">
+          {services.map((service, index) => (
+            <Reveal
+              key={service.id}
+              direction={index % 2 === 0 ? "left" : "right"}
+              rootMargin="0px 0px -80px 0px"
+            >
+              <article className="service-card group h-full overflow-hidden rounded-xl border border-carbon/10 bg-white">
                 <Link
                   href={`/services#${service.id}`}
-                  className="mt-6 inline-flex font-bold text-navy underline decoration-gold underline-offset-4"
+                  className="arrow-link flex h-full flex-col focus-visible:outline-offset-[-3px]"
+                  aria-labelledby={`preview-${service.id}-title`}
                   data-button
                 >
-                  Learn more
+                  <div className="service-image relative aspect-[16/9] shrink-0 overflow-hidden bg-[#eeefed]">
+                    <Image
+                      src={
+                        region === "sa" && service.id === "project-management"
+                          ? "/services/project-management/project-management-sa.png"
+                          : (service.image?.src ?? "/icon.svg")
+                      }
+                      alt={service.image?.alt ?? ""}
+                      fill
+                      sizes="(min-width: 1280px) 620px, (min-width: 768px) 50vw, 100vw"
+                      className={`service-photo ${service.image ? `object-cover ${service.image.position}` : "object-contain p-12"}`}
+                    />
+                    <span
+                      className={`absolute left-6 top-5 text-xs font-semibold tracking-widest ${service.image ? "rounded bg-snow/95 px-2 py-1 text-navy" : "text-navy/65"}`}
+                      aria-hidden="true"
+                    >
+                      0{index + 1}
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col p-6 sm:p-8">
+                    <h3
+                      id={`preview-${service.id}-title`}
+                      className="text-3xl sm:text-4xl"
+                    >
+                      {service.title}
+                    </h3>
+                    <p className="mt-3 mb-7 text-sm leading-6 text-carbon/75">
+                      {service.category}
+                    </p>
+                    <span className="service-card-action mt-auto flex items-center justify-between gap-4 border-t border-carbon/10 pt-5 text-sm font-semibold">
+                      <span className="service-card-action-label">Explore Service</span>
+                      <DirectionalArrow direction="up-right" />
+                    </span>
+                  </div>
                 </Link>
-              </div>
-            </article>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>

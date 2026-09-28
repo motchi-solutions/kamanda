@@ -19,8 +19,6 @@ export default function Home() {
       region="ae"
       heroImage="/images/hero-global.png"
       heroAlt="Dubai skyline"
-      heroTitle="Management, Technology and Business Solutions"
-      heroDescription="Kamanda Management LLC supports organizations across the UAE with project management, construction support, technology and AI adoption, and specialized business solutions."
     />
   );
 }

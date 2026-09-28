@@ -1,0 +1,6 @@
+# Repository: https://github.com/motchi-solutions/kamanda
+# Team designated by the repository maintainer.
+*                  @motchi-solutions/websites-admin
+/src/              @motchi-solutions/websites-admin
+/docs/             @motchi-solutions/websites-admin
+/.github/          @motchi-solutions/websites-admin

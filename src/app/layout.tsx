@@ -4,6 +4,7 @@ import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { getBaseUrl } from "@/lib/site";
 
 import "./globals.css";
+import { SiteIntro } from "@/components/layout/site-intro";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -111,11 +112,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body
         className={`${manrope.variable} ${cormorantGaramond.variable} antialiased`}
       >
-        {children}
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
+        <SiteIntro />
+        <div className="site-content">{children}</div>
       </body>
     </html>
   );
