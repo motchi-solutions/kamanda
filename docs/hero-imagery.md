@@ -25,6 +25,6 @@ Use the address printed by `npm run dev` (port 3000 during this investigation). 
 
 For these public image paths, Next.js documents changing the source URL or removing the generated image cache as invalidation options. The development image cache is under `.next/dev/cache/images`; production uses `.next/cache/images`. Stop the server before clearing its generated cache, then restart it.
 
-## Social preview
+## Social previews
 
-The UAE social card is separate from the hero photograph: `public/seo/og-uae-20260928.jpg` is a 1200 × 630 cropped preview based on the supplied September 28 homepage screenshot. It is used by Open Graph and Twitter on the default, UAE, About, and Services routes. Saudi Arabia retains its separate `og-riyadh.png`. Update `src/lib/social-metadata.ts` when supplying a new regional card.
+Social preview images are separate from hero photographs. The shared metadata helper in `src/lib/social-metadata.ts` maps `/ae` to `/seo/og-dubai.png`, `/sa` to `/seo/og-riyadh.png`, and `/` plus shared About/Services pages to `/seo/og-default.png`. Both Open Graph and Twitter use the same route-selected PNG and descriptive alt text. Default and Dubai images measure 1733 × 908; Riyadh measures 1733 × 907. Keep declared metadata dimensions synchronized when replacing these files. The earlier dated UAE JPEG has been removed.

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "Services | Kamanda Management LLC",
     description: "Explore Kamanda Management LLC services across technology and AI adoption, construction support, project management, and business solutions.",
     path: "/services",
-    region: "ae",
+    region: "default",
   }),
 };
 

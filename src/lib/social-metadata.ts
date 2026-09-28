@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
 
 const images = {
+  default: {
+    url: "/seo/og-default.png",
+    width: 1733,
+    height: 908,
+    alt: "Kamanda Management LLC — management, technology and business solutions",
+  },
   ae: {
-    url: "/seo/og-uae-20260928.jpg",
-    width: 1200,
-    height: 630,
+    url: "/seo/og-dubai.png",
+    width: 1733,
+    height: 908,
     alt: "Kamanda Management LLC — management, technology and business solutions with the Dubai skyline",
   },
   sa: {
     url: "/seo/og-riyadh.png",
-    width: 1200,
-    height: 630,
+    width: 1733,
+    height: 907,
     alt: "Kamanda Management LLC in Saudi Arabia",
   },
 };
@@ -19,12 +25,12 @@ export function socialMetadata({
   title,
   description,
   path,
-  region = "ae",
+  region = "default",
 }: {
   title: string;
   description: string;
   path: string;
-  region?: "ae" | "sa";
+  region?: "default" | "ae" | "sa";
 }): Pick<Metadata, "openGraph" | "twitter"> {
   return {
     openGraph: {

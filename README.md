@@ -112,4 +112,12 @@ Hero source paths, current dimensions, replacement instructions, and localhost c
 
 ### Social sharing images
 
-Open Graph and Twitter large-image cards use the shared helper in `src/lib/social-metadata.ts`. `/`, `/ae`, `/about`, and `/services` use the 1200 × 630 UAE preview at `public/seo/og-uae-20260928.jpg`, prepared from the supplied homepage screenshot. `/sa` keeps `public/seo/og-riyadh.png` until the Saudi replacement is supplied. Each route sets its own social title, description, and Open Graph URL; `SITE_URL` supplies the absolute origin. The versioned UAE filename avoids reusing the previous image URL in social caches, although platforms may still need to refresh cached page previews.
+Open Graph and Twitter large-image cards use `src/lib/social-metadata.ts`:
+
+| Routes | Image | Dimensions |
+| --- | --- | --- |
+| `/`, `/about`, `/services` | `/seo/og-default.png` | 1733 × 908 |
+| `/ae` | `/seo/og-dubai.png` | 1733 × 908 |
+| `/sa` | `/seo/og-riyadh.png` | 1733 × 907 |
+
+Each route has its own social title, description, and Open Graph URL. `SITE_URL` supplies the absolute origin. Image dimensions match the actual PNG files. Social platforms may need to refresh cached page previews after deployment.
