@@ -1,3 +1,4 @@
+import { socialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
 
 import { ServicesPage } from "@/components/pages/services/services-page";
@@ -10,6 +11,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/services",
   },
+  ...socialMetadata({
+    title: "Services | Kamanda Management LLC",
+    description: "Explore Kamanda Management LLC services across technology and AI adoption, construction support, project management, and business solutions.",
+    path: "/services",
+    region: "ae",
+  }),
 };
 
 export default async function ServicesRoute() {

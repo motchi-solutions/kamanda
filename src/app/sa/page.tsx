@@ -1,3 +1,4 @@
+import { socialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
 
 import { HomePage } from "@/components/pages/home/home-page";
@@ -9,28 +10,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/sa",
   },
-  openGraph: {
-    locale: "en_SA",
-    url: "/sa",
+  ...socialMetadata({
     title: "Kamanda Management LLC in Saudi Arabia",
-    description:
-      "Project management, construction support, technology and AI adoption, and business solutions in Saudi Arabia.",
-    images: [
-      {
-        url: "/seo/og-riyadh.png",
-        width: 1200,
-        height: 630,
-        alt: "Kamanda Management LLC in Saudi Arabia",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Kamanda Management LLC in Saudi Arabia",
-    description:
-      "Project management, construction support, technology and AI adoption, and business solutions in Saudi Arabia.",
-    images: ["/seo/og-riyadh.png"],
-  },
+    description: "Kamanda Management LLC delivers project management, construction support, technology and AI adoption, and business solutions in Saudi Arabia.",
+    path: "/sa",
+    region: "sa",
+  }),
+
 };
 
 export default function SaudiArabiaPage() {

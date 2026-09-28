@@ -1,3 +1,4 @@
+import { socialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 
@@ -59,38 +60,12 @@ export const metadata: Metadata = {
     canonical: "/",
   },
 
-  openGraph: {
-    type: "website",
-    locale: "en_AE",
-    url: "/",
-    siteName: "Kamanda Management LLC",
+  ...socialMetadata({
     title: "Kamanda Management LLC",
     description:
       "Project management, construction support, technology and AI adoption, and specialized business solutions.",
-    images: [
-      {
-        url: "/seo/og-dubai.png",
-        width: 1200,
-        height: 630,
-        alt: "Kamanda Management LLC",
-      },
-    ],
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "Kamanda Management LLC",
-    description:
-      "Project management, construction support, technology and AI adoption, and specialized business solutions.",
-    images: [
-      {
-        url: "/seo/og-dubai.png",
-        width: 1200,
-        height: 630,
-        alt: "Kamanda Management LLC",
-      },
-    ],
-  },
+    path: "/",
+  }),
 
   robots: {
     index: true,

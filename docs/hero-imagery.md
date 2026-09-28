@@ -24,3 +24,7 @@ Next.js defaults to a four-hour minimum optimized-image cache lifetime. Replacin
 Use the address printed by `npm run dev` (port 3000 during this investigation). Reload after the development compiler updates; restart the development server if a replacement was not detected. `npm run start` serves a production build and requires a new `npm run build` before it can reflect source changes. A browser hard refresh alone cannot refresh an old production build or invalidate the server's optimized-image cache.
 
 For these public image paths, Next.js documents changing the source URL or removing the generated image cache as invalidation options. The development image cache is under `.next/dev/cache/images`; production uses `.next/cache/images`. Stop the server before clearing its generated cache, then restart it.
+
+## Social preview
+
+The UAE social card is separate from the hero photograph: `public/seo/og-uae-20260928.jpg` is a 1200 × 630 cropped preview based on the supplied September 28 homepage screenshot. It is used by Open Graph and Twitter on the default, UAE, About, and Services routes. Saudi Arabia retains its separate `og-riyadh.png`. Update `src/lib/social-metadata.ts` when supplying a new regional card.

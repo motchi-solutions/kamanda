@@ -1,3 +1,4 @@
+import { socialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
 
 import { HomePage } from "@/components/pages/home/home-page";
@@ -9,28 +10,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/ae",
   },
-  openGraph: {
-    locale: "en_AE",
-    url: "/ae",
+  ...socialMetadata({
     title: "Kamanda Management LLC in the UAE",
-    description:
-      "Project management, construction support, technology and AI adoption, and business solutions across the UAE.",
-    images: [
-      {
-        url: "/seo/og-dubai.png",
-        width: 1200,
-        height: 630,
-        alt: "Kamanda Management LLC in the UAE",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Kamanda Management LLC in the UAE",
-    description:
-      "Project management, construction support, technology and AI adoption, and business solutions across the UAE.",
-    images: ["/seo/og-dubai.png"],
-  },
+    description: "Kamanda Management LLC delivers project management, construction support, technology and AI adoption, and business solutions across the UAE.",
+    path: "/ae",
+    region: "ae",
+  }),
+
 };
 
 export default function UnitedArabEmiratesPage() {

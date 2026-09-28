@@ -109,3 +109,7 @@ The cause of the reported live-site issue has not yet been confirmed.
 See [contributing](CONTRIBUTING.md), [architecture](docs/architecture.md), and [dependencies](docs/dependencies.md).
 
 Hero source paths, current dimensions, replacement instructions, and localhost cache troubleshooting are documented in [Hero imagery](docs/hero-imagery.md). Heroes reference root-relative public image URLs through `next/image`.
+
+### Social sharing images
+
+Open Graph and Twitter large-image cards use the shared helper in `src/lib/social-metadata.ts`. `/`, `/ae`, `/about`, and `/services` use the 1200 × 630 UAE preview at `public/seo/og-uae-20260928.jpg`, prepared from the supplied homepage screenshot. `/sa` keeps `public/seo/og-riyadh.png` until the Saudi replacement is supplied. Each route sets its own social title, description, and Open Graph URL; `SITE_URL` supplies the absolute origin. The versioned UAE filename avoids reusing the previous image URL in social caches, although platforms may still need to refresh cached page previews.

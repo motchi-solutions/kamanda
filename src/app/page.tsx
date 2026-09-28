@@ -1,3 +1,4 @@
+import { socialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
 
 import { HomePage } from "@/components/pages/home/home-page";
@@ -11,6 +12,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  ...socialMetadata({
+    title: "Kamanda Management LLC",
+    description: "Kamanda Management LLC delivers project management, construction support, technology and AI adoption, and specialized business solutions.",
+    path: "/",
+    region: "ae",
+  }),
 };
 
 export default function Home() {
