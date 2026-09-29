@@ -611,6 +611,12 @@
       justify-content: flex-start;
       margin-top: 1.25rem;
     }
+    .hero-actions-secondary-first {
+      flex-direction: column;
+    }
+    .hero-actions-secondary-first .btn {
+      width: 100%;
+    }
     .hero-actions .hero-secondary-desktop {
       display: none;
     }
