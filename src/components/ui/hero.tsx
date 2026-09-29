@@ -46,7 +46,11 @@ export function Hero({
 }: HeroProps) {
   // Account for the full covered photograph, not just the narrow visible crop.
   const mobileImageSizes = `max(100vw, min(${70 * imageAspectRatio}svh, ${32 * imageAspectRatio}rem))`;
-  const PrimaryLink = primaryCta.href.startsWith("#") ? "a" : Link;
+  const PrimaryLink = primaryCta.href.endsWith("#contact")
+    ? ContactLink
+    : primaryCta.href.startsWith("#")
+      ? "a"
+      : Link;
   const SecondaryLink = secondaryCta?.href.endsWith("#contact")
     ? ContactLink
     : secondaryCta?.href.startsWith("#")
