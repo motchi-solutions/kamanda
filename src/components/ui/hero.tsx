@@ -16,7 +16,7 @@ type HeroProps = {
   imagePosition?: "center" | "lower" | "right";
   panelWidth?: "standard" | "wide";
   primaryCta: { label: string; href: string };
-  secondaryCta?: { label: string; href: string; hideOnMobile?: boolean };
+  secondaryCta?: { label: string; href: string; hideOnMobile?: boolean; firstOnMobile?: boolean };
   nextSectionHref?: string;
   nextSectionLabel?: string;
 };
@@ -46,7 +46,11 @@ export function Hero({
 }: HeroProps) {
   // Account for the full covered photograph, not just the narrow visible crop.
   const mobileImageSizes = `max(100vw, min(${70 * imageAspectRatio}svh, ${32 * imageAspectRatio}rem))`;
-  const PrimaryLink = primaryCta.href.startsWith("#") ? "a" : Link;
+  const PrimaryLink = primaryCta.href.endsWith("#contact")
+    ? ContactLink
+    : primaryCta.href.startsWith("#")
+      ? "a"
+      : Link;
   const SecondaryLink = secondaryCta?.href.endsWith("#contact")
     ? ContactLink
     : secondaryCta?.href.startsWith("#")
@@ -85,7 +89,7 @@ export function Hero({
             )}
           </h1>
           <p className="hero-description">{description}</p>
-          <div className="hero-actions">
+          <div className={`hero-actions ${secondaryCta?.firstOnMobile ? "hero-actions-secondary-first" : ""}`}>
             <PrimaryLink
               href={primaryCta.href}
               className="btn btn-gold arrow-link"
@@ -97,7 +101,7 @@ export function Hero({
             {secondaryCta && (
               <SecondaryLink
                 href={secondaryCta.href}
-                className={`btn btn-hero-secondary ${secondaryCta.hideOnMobile ? "hero-secondary-desktop" : ""}`}
+                className={`btn btn-hero-secondary ${secondaryCta.hideOnMobile ? "hero-secondary-desktop" : ""} ${secondaryCta.firstOnMobile ? "max-sm:order-first" : ""}`}
                 data-button
               >
                 {secondaryCta.label}

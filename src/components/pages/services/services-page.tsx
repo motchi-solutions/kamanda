@@ -23,7 +23,7 @@ export function ServicesPage({ region }: ServicesPageProps) {
           imageAlt="Dubai skyline and illuminated city roads at night"
           imageSizes="(max-width: 1919px) 1920px, 100vw"
           imagePosition="right"
-          primaryCta={{ label: "Explore Services", href: "#technology-ai" }}
+          primaryCta={{ label: "Contact Us", href: `/${region}#contact` }}
           nextSectionHref="#technology-ai"
         />
         <ServicesNavigation

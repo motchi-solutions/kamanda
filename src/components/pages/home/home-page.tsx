@@ -30,7 +30,7 @@ export function HomePage({ region, heroImage, heroAlt }: HomePageProps) {
           secondaryCta={{
             label: "Contact Us",
             href: "#contact",
-            hideOnMobile: true,
+            firstOnMobile: true,
           }}
           nextSectionHref="#services"
         />
