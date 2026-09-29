@@ -49,7 +49,9 @@ export function Hero({
   const PrimaryLink = primaryCta.href.startsWith("#") ? "a" : Link;
   const SecondaryLink = secondaryCta?.href.endsWith("#contact")
     ? ContactLink
-    : secondaryCta?.href.startsWith("#") ? "a" : Link;
+    : secondaryCta?.href.startsWith("#")
+      ? "a"
+      : Link;
   const highlightIndex = highlight ? title.indexOf(highlight) : -1;
 
   return (

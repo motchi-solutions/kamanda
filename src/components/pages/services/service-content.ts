@@ -1,12 +1,30 @@
-export const projectManagementImage = {
-  src: "/services/project-management.png",
-  alt: "Business team discussing a project around a meeting table",
-  position: "object-center",
+export const serviceImages = {
+  technologyAi: {
+    src: "/services/technology-ai.jpg",
+    alt: "Professional reviewing analytics charts on a laptop",
+    position: "object-center",
+  },
+  constructionSupport: {
+    src: "/services/construction-support.jpg",
+    alt: "Construction professionals inspecting a building site",
+    position: "object-[center_70%]",
+  },
+  projectManagement: {
+    src: "/services/project-management.png",
+    alt: "Business team discussing a project around a meeting table",
+    position: "object-center",
+  },
+  businessSolutions: {
+    src: "/services/business-solutions.jpg",
+    alt: "Business professional reviewing charts on a tablet alongside planning documents",
+    position: "object-center",
+  },
 };
 
 export const services = [
   {
     id: "technology-ai",
+    image: serviceImages.technologyAi,
     title: "Technology & AI Adoption",
     eyebrow: "Requirements, Partners, and Adoption",
     description:
@@ -44,6 +62,7 @@ export const services = [
   },
   {
     id: "construction-support",
+    image: serviceImages.constructionSupport,
     title: "Construction Support",
     eyebrow: "Site Teams and Project Information",
     description:
@@ -81,7 +100,7 @@ export const services = [
   },
   {
     id: "project-management",
-    image: projectManagementImage,
+    image: serviceImages.projectManagement,
     title: "Project Management",
     eyebrow: "Planning through Closeout",
     description:
@@ -119,6 +138,7 @@ export const services = [
   },
   {
     id: "business-solutions",
+    image: serviceImages.businessSolutions,
     title: "Business Solutions",
     eyebrow: "Partner Sourcing and Introductions",
     description:

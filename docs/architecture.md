@@ -11,6 +11,8 @@ The Next.js App Router lives in `src/app`. The root `layout.tsx` loads Manrope a
 | `/sa`       | Riyadh skyline and Saudi navigation                    | Saudi metadata, canonical `/sa`, Riyadh social image |
 | `/about`    | Shared About content; cookie-derived navigation        | Shared canonical `/about`                            |
 | `/services` | Shared service details; cookie-derived navigation      | Shared canonical `/services`                         |
+| `/privacy-policy` | Current privacy policy and PDF download | Indexed canonical `/privacy-policy` |
+| `/terms-of-service` | Current terms of service and PDF download | Indexed canonical `/terms-of-service` |
 
 Regional routes delegate to the same `HomePage`. Its hero title and description are shared; routes supply region, skyline source, and image alt text. The homepage Project Management card and service detail share the region-neutral `/services/project-management.png` image and alt text from the service content configuration. There are no regional About/Services component trees or copy variants. About and Services await the shared server cookie reader and are dynamically rendered; their metadata remains static and route-specific.
 
@@ -30,6 +32,8 @@ Navbar Home points to `/ae` or `/sa`. Services links directly to `/services` in 
 
 ## SEO and configuration
 
+Privacy Policy archive maintenance: whenever the Privacy Policy changes materially, preserve the previous version and publish it at `/privacy-policy/archive/YYYY-MM-DD`. Keep the archived page publicly accessible but out of primary navigation; it may use `noindex`. The current `/privacy-policy` remains canonical. Do not overwrite a prior policy without preserving its archived page.
+
 `src/lib/site.ts` resolves the public origin from `SITE_URL`, then development localhost or the production fallback `https://kamandagroup.com`. Root metadata supplies global defaults; route files provide deterministic titles, descriptions, canonicals, and regional social overrides. Cookie/IP data never enters metadata. `sitemap.ts`, `robots.ts`, `manifest.ts`, app icons, and assets in `public/seo` retain their existing roles.
 
 `next.config.ts` enables React Compiler. `tsconfig.json` enables strict checking and the `@/*` alias. `postcss.config.mjs` enables Tailwind v4; `eslint.config.mjs` composes Next.js Core Web Vitals and TypeScript rules.
@@ -46,7 +50,7 @@ Service anchors are `technology-ai`, `construction-support`, `project-management
 
 ## Design and development conventions
 
-Typography: Manrope for body/UI; Cormorant Garamond for display headings. Brand tokens in `globals.css`: Carbon `#1E1E1E`, Navy `#1B3A66`, Gold `#C9B07A`, Snow `#FAFAFA`. Use neutral surfaces, navy/gold accents, modest corner radii, and restrained consultancy-oriented styling. Tailwind v4 is CSS-first; Server Components remain the default.
+Typography: Manrope for body/UI; Cormorant Garamond for display headings. Brand tokens in `globals.css`: Carbon `#1E1E1E`, Navy `#1B3A66`, Gold `#C9A45D`, Snow `#FAFAFA`. Use neutral surfaces, navy/gold accents, modest corner radii, and restrained consultancy-oriented styling. Tailwind v4 is CSS-first; Server Components remain the default.
 
 Interface icons use named imports from `react-icons/lu`, generally 16 px with `aria-hidden="true"`. Navbar, loading intro, and service-image logo fallbacks use `/icon.svg`, served from `src/app/icon.svg`, as the shared vector brand source. App PNG icons and decorative artwork remain separate assets. The footer reads “Website by Motchi Solutions" in muted small text; “Motchi Solutions links to the maintainer-provided destination `https://github.com/motchi-solutions`.
 

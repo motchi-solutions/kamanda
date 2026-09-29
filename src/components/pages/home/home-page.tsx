@@ -1,6 +1,6 @@
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
-import { Contact } from "@/components/pages/home/contact";
+import { Contact } from "@/components/pages/home/contact/contact";
 import { Hero } from "@/components/ui/hero";
 import { Metrics } from "@/components/pages/home/metrics";
 import { ServicesPreview } from "@/components/pages/home/services-preview";
@@ -27,7 +27,11 @@ export function HomePage({ region, heroImage, heroAlt }: HomePageProps) {
           imageAspectRatio={region === "ae" ? 3 : 1672 / 941}
           imageAlt={heroAlt}
           primaryCta={{ label: "Services", href: "#services" }}
-          secondaryCta={{ label: "Contact Us", href: "#contact", hideOnMobile: true }}
+          secondaryCta={{
+            label: "Contact Us",
+            href: "#contact",
+            hideOnMobile: true,
+          }}
           nextSectionHref="#services"
         />
         <ServicesPreview />

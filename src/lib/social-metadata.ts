@@ -17,7 +17,7 @@ const images = {
     url: "/seo/og-riyadh.png",
     width: 1733,
     height: 907,
-    alt: "Kamanda Management LLC in Saudi Arabia",
+    alt: "Kamanda Management LLC — management, technology and business solutions in Saudi Arabia",
   },
 };
 

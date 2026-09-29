@@ -10,6 +10,7 @@ This inventory matches `package.json`; `package-lock.json` records exact resolve
 | `react`       | `19.2.8`         | Server/client component model, hooks in mobile menu, nav links, reveals, counters           | React Compiler enabled by Next.js configuration.                                                                                         |
 | `react-dom`   | `19.2.8`         | Next.js-managed DOM rendering and hydration                                                 | Keep compatible with React; no custom DOM root is created.                                                                               |
 | `react-icons` | `^5.7.0`         | Lucide interface icons in mobile navigation, service links, About link, and contact CTA     | Named imports from `react-icons/lu`; one outline family, decorative icons hidden from accessibility APIs. Brand assets remain unchanged. |
+| `pdfkit`      | `^0.20.2`         | Server-side generation of branded legal PDFs with reliable wrapping, lists, typography, images, and page breaks | Used only by the Node.js legal PDF route; legal wording remains sourced from `src/lib/legal-content.ts`. |
 
 ## Development/build dependencies
 
@@ -28,6 +29,8 @@ These packages are needed for development, checking, or production compilation, 
 | `babel-plugin-react-compiler` | `1.0.0`          | Build-time React optimization                                 | Activated through `reactCompiler: true` in `next.config.ts`; no custom Babel config.                                   |
 
 The existing `allowScripts` package metadata is preserved. Fonts are fetched by Next.js font tooling, not separate direct npm packages. Do not add dependencies without a concrete need; use npm to update the manifest and lockfile together.
+
+Legal PDF generation uses PDFKit rather than hand-built PDF syntax. The renderer applies the Kamanda logo, built-in Times/Helvetica fonts, navy/gold brand colors, structured paragraphs and lists, metadata, and page numbers. Keep PDF wording in sync by changing only `src/lib/legal-content.ts`; do not duplicate policy text inside the renderer.
 
 ## ESLint compatibility status
 
