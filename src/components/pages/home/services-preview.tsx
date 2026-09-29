@@ -4,7 +4,7 @@ import Link from "next/link";
 import { REVEAL_STAGGER_MS } from "@/lib/motion";
 import { Reveal } from "@/components/ui/reveal";
 
-import { projectManagementImage } from "@/components/pages/services/service-content";
+import { serviceImages } from "@/components/pages/services/service-content";
 
 type ServicePreview = {
   id: string;
@@ -18,37 +18,25 @@ const services: ServicePreview[] = [
     id: "technology-ai",
     title: "Technology & AI Adoption",
     category: "Adoption Planning and Implementation Oversight",
-    image: {
-      src: "/services/technology-ai.jpg",
-      alt: "Professional reviewing analytics charts on a laptop",
-      position: "object-center",
-    },
+    image: serviceImages.technologyAi,
   },
   {
     id: "construction-support",
     title: "Construction Support",
     category: "Site Coordination, Documentation, and Reporting",
-    image: {
-      src: "/services/construction-support.jpg",
-      alt: "Construction professionals inspecting a building site",
-      position: "object-[center_70%]",
-    },
+    image: serviceImages.constructionSupport,
   },
   {
     id: "project-management",
     title: "Project Management",
     category: "Scope, Schedules, and Delivery Oversight",
-    image: projectManagementImage,
+    image: serviceImages.projectManagement,
   },
   {
     id: "business-solutions",
     title: "Business Solutions",
     category: "Partner Sourcing and Business Introductions",
-    image: {
-      src: "/services/business-solutions.jpg",
-      alt: "Business professional reviewing charts on a tablet alongside planning documents",
-      position: "object-center",
-    },
+    image: serviceImages.businessSolutions,
   },
 ];
 

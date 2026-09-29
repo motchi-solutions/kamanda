@@ -11,6 +11,8 @@ The Next.js App Router lives in `src/app`. The root `layout.tsx` loads Manrope a
 | `/sa`       | Riyadh skyline and Saudi navigation                    | Saudi metadata, canonical `/sa`, Riyadh social image |
 | `/about`    | Shared About content; cookie-derived navigation        | Shared canonical `/about`                            |
 | `/services` | Shared service details; cookie-derived navigation      | Shared canonical `/services`                         |
+| `/privacy-policy` | Current privacy policy and PDF download | Indexed canonical `/privacy-policy` |
+| `/terms-of-service` | Current terms of service and PDF download | Indexed canonical `/terms-of-service` |
 
 Regional routes delegate to the same `HomePage`. Its hero title and description are shared; routes supply region, skyline source, and image alt text. The homepage Project Management card and service detail share the region-neutral `/services/project-management.png` image and alt text from the service content configuration. There are no regional About/Services component trees or copy variants. About and Services await the shared server cookie reader and are dynamically rendered; their metadata remains static and route-specific.
 
@@ -29,6 +31,8 @@ The cookie uses path `/`, SameSite Lax, one-year expiry, `httpOnly: false`, and 
 Navbar Home points to `/ae` or `/sa`. Services links directly to `/services` in desktop/mobile navigation and the footer. The hero Services CTA still scrolls to the homepage preview. Navbar Contact uses a local anchor on landing pages and a regional homepage anchor on shared pages. Service cards point to shared `/services#...` URLs. `NavLink` is the small Client Component reading `usePathname`; desktop/mobile links share it. Home is active on all three home routes, About on `/about`, and Services on `/services`. Contact has no scroll-spy. Active links have navy text and a full-width gold underline; hover/focus uses a shorter underline.
 
 ## SEO and configuration
+
+Privacy Policy archive maintenance: whenever the Privacy Policy changes materially, preserve the previous version and publish it at `/privacy-policy/archive/YYYY-MM-DD`. Keep the archived page publicly accessible but out of primary navigation; it may use `noindex`. The current `/privacy-policy` remains canonical. Do not overwrite a prior policy without preserving its archived page.
 
 `src/lib/site.ts` resolves the public origin from `SITE_URL`, then development localhost or the production fallback `https://kamandagroup.com`. Root metadata supplies global defaults; route files provide deterministic titles, descriptions, canonicals, and regional social overrides. Cookie/IP data never enters metadata. `sitemap.ts`, `robots.ts`, `manifest.ts`, app icons, and assets in `public/seo` retain their existing roles.
 

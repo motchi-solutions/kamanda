@@ -9,7 +9,7 @@ export function CompletionChecklist({ form }: { form: ContactFormState }) {
       aria-atomic="true"
     >
       <p className="font-semibold text-navy">
-        {requirements.length ? "To complete" : "Ready to send"}
+        {requirements.length ? "Required fields to complete" : "Ready to send"}
       </p>
       {requirements.length > 0 ? (
         <>
