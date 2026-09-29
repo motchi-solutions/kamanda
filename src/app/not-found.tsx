@@ -14,7 +14,7 @@ export default async function NotFound() {
   return (
     <>
       <Navbar region={region} />
-      <main id="main-content" className="pt-[var(--site-header-height)]">
+      <main id="main-content" className="pt-(--site-header-height)">
         <section className="section flex min-h-[60vh] items-center bg-snow" aria-labelledby="not-found-heading">
           <div className="site-container w-full">
             <Reveal className="mx-auto max-w-2xl text-center">

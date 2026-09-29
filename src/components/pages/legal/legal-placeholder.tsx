@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/footer";
 export function LegalPlaceholder({ title, region }: { title: string; region: "ae" | "sa" }) {
   return <>
     <Navbar region={region} />
-    <main id="main-content" className="pt-[var(--site-header-height)]">
+    <main id="main-content" className="pt-(--site-header-height)">
       <section className="section min-h-[60vh] bg-snow" aria-labelledby="legal-heading">
         <div className="site-container">
           <div className="max-w-3xl">

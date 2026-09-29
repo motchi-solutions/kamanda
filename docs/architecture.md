@@ -50,7 +50,7 @@ Service anchors are `technology-ai`, `construction-support`, `project-management
 
 ## Design and development conventions
 
-Typography: Manrope for body/UI; Cormorant Garamond for display headings. Brand tokens in `globals.css`: Carbon `#1E1E1E`, Navy `#1B3A66`, Gold `#C9B07A`, Snow `#FAFAFA`. Use neutral surfaces, navy/gold accents, modest corner radii, and restrained consultancy-oriented styling. Tailwind v4 is CSS-first; Server Components remain the default.
+Typography: Manrope for body/UI; Cormorant Garamond for display headings. Brand tokens in `globals.css`: Carbon `#1E1E1E`, Navy `#1B3A66`, Gold `#C9A45D`, Snow `#FAFAFA`. Use neutral surfaces, navy/gold accents, modest corner radii, and restrained consultancy-oriented styling. Tailwind v4 is CSS-first; Server Components remain the default.
 
 Interface icons use named imports from `react-icons/lu`, generally 16 px with `aria-hidden="true"`. Navbar, loading intro, and service-image logo fallbacks use `/icon.svg`, served from `src/app/icon.svg`, as the shared vector brand source. App PNG icons and decorative artwork remain separate assets. The footer reads “Website by Motchi Solutions" in muted small text; “Motchi Solutions links to the maintainer-provided destination `https://github.com/motchi-solutions`.
 

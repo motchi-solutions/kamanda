@@ -10,7 +10,7 @@ This inventory matches `package.json`; `package-lock.json` records exact resolve
 | `react`       | `19.2.8`         | Server/client component model, hooks in mobile menu, nav links, reveals, counters           | React Compiler enabled by Next.js configuration.                                                                                         |
 | `react-dom`   | `19.2.8`         | Next.js-managed DOM rendering and hydration                                                 | Keep compatible with React; no custom DOM root is created.                                                                               |
 | `react-icons` | `^5.7.0`         | Lucide interface icons in mobile navigation, service links, About link, and contact CTA     | Named imports from `react-icons/lu`; one outline family, decorative icons hidden from accessibility APIs. Brand assets remain unchanged. |
-| `pdfkit`      | `^0.17.2`         | Server-side generation of branded legal PDFs with reliable wrapping, lists, typography, images, and page breaks | Used only by the Node.js legal PDF route; legal wording remains sourced from `src/lib/legal-content.ts`. |
+| `pdfkit`      | `^0.20.2`         | Server-side generation of branded legal PDFs with reliable wrapping, lists, typography, images, and page breaks | Used only by the Node.js legal PDF route; legal wording remains sourced from `src/lib/legal-content.ts`. |
 
 ## Development/build dependencies
 

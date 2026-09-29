@@ -14,6 +14,8 @@ export function LegalDocumentPage({
   document: LegalDocument;
   region: "ae" | "sa";
 }) {
+  const homeHref = region === "sa" ? "/sa" : "/ae";
+
   return (
     <>
       <Navbar region={region} />
@@ -48,7 +50,7 @@ export function LegalDocumentPage({
                     <LuDownload aria-hidden="true" size={16} />
                     Download PDF
                   </a>
-                  <Link className="btn btn-secondary" href="/">
+                  <Link className="btn btn-secondary" href={homeHref}>
                     Back to Home
                   </Link>
                 </div>
