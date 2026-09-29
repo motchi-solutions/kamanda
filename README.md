@@ -101,7 +101,7 @@ The proxy records `kamanda-region` on homepage requests and uses `x-vercel-ip-co
 
 ## Page experience
 
-- **Home:** shared photo hero with gold highlights, a diagonal service-card layout from 1024 px, vertically aligned service introduction, synchronized metrics, and the secure enquiry form. Service cards use a two-column tablet layout and a single-column mobile layout.
+- **Home:** shared photo hero with gold highlights, an aligned 2×2 service-card grid on desktop, vertically aligned service introduction, synchronized metrics, and the secure enquiry form. Service cards use a two-column tablet layout and a single-column mobile layout.
 - **About:** alternating text/photo sections, broader consultancy positioning, “How We Manage Our Projects” process cards, specialist partner information, and regional/global support.
 - **Services:** sticky section navigation beneath the main navbar, directional arrows for sections above/below the current position, a dash for the active section, and alternating desktop content columns.
 - **Shared navigation:** regional home links, active-page states, animated mobile disclosure, keyboard dismissal, and vector brand icons.
@@ -110,7 +110,7 @@ The proxy records `kamanda-region` on homepage requests and uses `x-vercel-ip-co
 
 Use existing CSS-first Tailwind v4 tokens, modest corner radii, and navy/gold accents on neutral surfaces. Default to Server Components; isolate browser behavior in small Client Components.
 
-The root layout renders a 950 ms CSS logo intro once per document load. Section reveals use IntersectionObserver and the Web Animations API. Off-screen items are prepared before paint and animate once after reaching 80 px inside the viewport; already-visible content stays visible. Desktop entrances last 750 ms, mobile entrances 550 ms, and About process cards have 160 ms desktop stagger intervals. Keyboard focus and printing reveal content immediately. Metrics use a one-time requestAnimationFrame count-up with a shared 1.8-second quadratic ease-out progression (construction hours start at 200,000; the smaller totals start at zero and all finish together), with final values rendered on the server. All motion respects reduced-motion preferences. Hover/focus styles use CSS: service links turn dark gold with a navy underline drawn left to right, and diagonal/hero arrows repeat a gentle nudge while active. The footer uses the brighter hero gold. There is no animation dependency.
+The root layout renders a 950 ms CSS logo intro once per document load. Section reveals use IntersectionObserver and the Web Animations API. Off-screen items are prepared before paint and animate once on entry with subtle 700 ms entrances and delays capped at 280 ms. Content already visible during hydration remains steady, avoiding a visible-to-hidden flash. Keyboard focus and printing reveal content immediately. Metrics use a one-time requestAnimationFrame count-up with a shared 1.8-second quadratic ease-out progression (construction hours start at 200,000; the smaller totals start at zero and all finish together), with final values rendered on the server. All motion respects reduced-motion preferences. Hover/focus styles use CSS: service links turn dark gold with a navy underline drawn left to right, and diagonal/hero arrows repeat a gentle nudge while active. The footer uses the brighter hero gold. There is no animation dependency.
 
 Use `next/image`: the skyline is eager with high fetch priority, and below-fold images remain lazy. Never reuse the hero source for lazy content on the same page. All four service cards use supplied local photos; photos display in full color with a subtle scale on hover or focus. No external image hotlinks are used.
 
@@ -153,3 +153,7 @@ Open Graph and Twitter large-image cards use `src/lib/social-metadata.ts`:
 | `/sa` | `/seo/og-riyadh.png` | 1733 × 907 |
 
 Each route has its own social title, description, and Open Graph URL. `SITE_URL` supplies the absolute origin. Image dimensions match the actual PNG files. Social platforms may need to refresh cached page previews after deployment.
+
+Desktop sections (1024 px and above) use `clamp(2rem, 4vw, 3.5rem)` vertical padding, half the smaller-screen spacing formula. Tablet/mobile spacing is unchanged. The footer includes the registered address beneath the gold catchphrase.
+
+Legal placeholders are available at `/terms-of-service` and `/privacy-policy`, linked from the footer. Both are marked noindex and omitted from the sitemap until final content is supplied; update metadata and the sitemap when publishing the completed policies.

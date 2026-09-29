@@ -23,7 +23,11 @@ export function ContactCta({ region }: { region: "ae" | "sa" }) {
             defining the scope.
           </p>
         </Reveal>
-        <Reveal direction="right" sideBySideFrom="md" className="shrink-0 self-start md:self-center">
+        <Reveal
+          direction="right"
+          sideBySideFrom="md"
+          className="shrink-0 self-start md:self-center"
+        >
           <ContactLink
             href={`/${region}#contact`}
             className="btn arrow-link bg-white text-navy hover:bg-snow focus-visible:bg-snow"

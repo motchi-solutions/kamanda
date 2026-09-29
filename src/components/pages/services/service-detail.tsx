@@ -16,7 +16,12 @@ export function ServiceDetail({
       aria-labelledby={`${service.id}-heading`}
     >
       <div className="site-container grid items-start gap-10 lg:grid-cols-2 lg:items-center lg:gap-20">
-        <Reveal direction={index % 2 === 0 ? "left" : "right"} className={index % 2 === 1 ? "lg:col-start-2 lg:row-start-1" : undefined}>
+        <Reveal
+          direction={index % 2 === 0 ? "left" : "right"}
+          className={
+            index % 2 === 1 ? "lg:col-start-2 lg:row-start-1" : undefined
+          }
+        >
           <p className="eyebrow">
             0{index + 1} / {service.eyebrow}
           </p>

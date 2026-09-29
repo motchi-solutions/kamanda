@@ -27,7 +27,11 @@ export function HomePage({ region, heroImage, heroAlt }: HomePageProps) {
           imageAspectRatio={region === "ae" ? 3 : 1672 / 941}
           imageAlt={heroAlt}
           primaryCta={{ label: "Services", href: "#services" }}
-          secondaryCta={{ label: "Contact Us", href: "#contact", hideOnMobile: true }}
+          secondaryCta={{
+            label: "Contact Us",
+            href: "#contact",
+            hideOnMobile: true,
+          }}
           nextSectionHref="#services"
         />
         <ServicesPreview />

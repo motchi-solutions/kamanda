@@ -28,11 +28,18 @@ export function AboutPage({ region }: AboutPageProps) {
           primaryCta={{ label: "Our Services", href: "/services" }}
           nextSectionHref="#about-introduction"
         />
-        <section id="about-introduction" className="section bg-white" aria-labelledby="about-introduction-heading">
+        <section
+          id="about-introduction"
+          className="section bg-white"
+          aria-labelledby="about-introduction-heading"
+        >
           <div className="site-container grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
             <Reveal direction="left">
               <p className="eyebrow">Who We Are</p>
-              <h2 id="about-introduction-heading" className="section-heading mt-4">
+              <h2
+                id="about-introduction-heading"
+                className="section-heading mt-4"
+              >
                 Project Leadership. Clear Coordination.
               </h2>
               <p className="body-copy mt-6">
@@ -41,15 +48,15 @@ export function AboutPage({ region }: AboutPageProps) {
                 technology adoption, and business advisory.
               </p>
               <p className="body-copy mt-5">
-                We clarify what needs to be done, bring the right people together,
-                and maintain oversight as work progresses.
+                We clarify what needs to be done, bring the right people
+                together, and maintain oversight as work progresses.
               </p>
               <p className="mt-8 border-l-2 border-gold pl-5 font-display text-2xl text-navy sm:text-3xl">
                 Building trust. Delivering value.
               </p>
             </Reveal>
             <Reveal direction="right" rootMargin="0px 0px -80px 0px">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-snow">
+              <div className="relative aspect-4/3 overflow-hidden rounded-xl bg-snow">
                 <Image
                   src="/services/business-solutions.jpg"
                   alt="Business professional reviewing charts on a tablet alongside planning documents"
@@ -69,21 +76,29 @@ export function AboutPage({ region }: AboutPageProps) {
                 Support Across Your Business
               </h2>
               <p className="body-copy mt-6">
-                From construction and project delivery to technology adoption and
-                business introductions, we help organizations define their needs
-                and coordinate the support to move forward.
+                From construction and project delivery to technology adoption
+                and business introductions, we help organizations define their
+                needs and coordinate the support to move forward.
               </p>
               <ul className="mt-7 divide-y divide-carbon/10 border-y border-carbon/10 text-sm leading-7 text-navy">
-                <li className="py-3">Project management and construction support.</li>
+                <li className="py-3">
+                  Project management and construction support.
+                </li>
                 <li className="py-3">Technology and AI adoption planning.</li>
-                <li className="py-3">Specialist partner sourcing and business solutions.</li>
+                <li className="py-3">
+                  Specialist partner sourcing and business solutions.
+                </li>
               </ul>
               <Link href="/services" className="text-action arrow-link mt-7">
                 Explore Our Services <DirectionalArrow direction="up-right" />
               </Link>
             </Reveal>
-            <Reveal direction="left" rootMargin="0px 0px -80px 0px" className="lg:col-start-1 lg:row-start-1">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-white">
+            <Reveal
+              direction="left"
+              rootMargin="0px 0px -80px 0px"
+              className="lg:col-start-1 lg:row-start-1"
+            >
+              <div className="relative aspect-4/3 overflow-hidden rounded-xl bg-white">
                 <Image
                   src="/services/construction-support.jpg"
                   alt="Construction professionals inspecting a large building site"
@@ -104,9 +119,9 @@ export function AboutPage({ region }: AboutPageProps) {
                 The Right Expertise for Each Requirement
               </h2>
               <p className="body-copy mt-6">
-                Business needs often span several disciplines. We help define the
-                requirement, identify specialist partners, and coordinate their
-                involvement throughout delivery.
+                Business needs often span several disciplines. We help define
+                the requirement, identify specialist partners, and coordinate
+                their involvement throughout delivery.
               </p>
               <p className="body-copy mt-5">
                 For technology and AI, Kamanda leads planning, requirements, and
@@ -125,8 +140,9 @@ export function AboutPage({ region }: AboutPageProps) {
               <p className="body-copy mt-5">
                 We support organizations across the UAE, KSA, the wider Gulf
                 region, and globally. Each engagement reflects your operating
-                requirements, stakeholder relationships, and business priorities,
-                with a consistent approach to planning and coordination.
+                requirements, stakeholder relationships, and business
+                priorities, with a consistent approach to planning and
+                coordination.
               </p>
             </Reveal>
           </div>

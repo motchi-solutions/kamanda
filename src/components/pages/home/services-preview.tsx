@@ -93,7 +93,7 @@ export function ServicesPreview() {
                   aria-labelledby={`preview-${service.id}-title`}
                   data-button
                 >
-                  <div className="service-image relative aspect-[16/9] shrink-0 overflow-hidden bg-[#eeefed]">
+                  <div className="service-image relative aspect-video shrink-0 overflow-hidden bg-[#eeefed]">
                     <Image
                       src={service.image?.src ?? "/icon.svg"}
                       alt={service.image?.alt ?? ""}
@@ -119,7 +119,9 @@ export function ServicesPreview() {
                       {service.category}
                     </p>
                     <span className="service-card-action mt-auto flex items-center justify-between gap-4 border-t border-carbon/10 pt-5 text-sm font-semibold">
-                      <span className="service-card-action-label">Explore Service</span>
+                      <span className="service-card-action-label">
+                        Explore Service
+                      </span>
                       <DirectionalArrow direction="up-right" />
                     </span>
                   </div>
