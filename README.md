@@ -27,6 +27,38 @@ SITE_URL=http://localhost:3000
 
 `SITE_URL` is an absolute public origin used for canonical, social, sitemap, and robots URLs. Set it to the intended HTTPS production origin before deployment. If omitted, `src/lib/site.ts` uses `http://localhost:3000` in development and `https://kamandagroup.com` otherwise. Do not carry a localhost value into production. Environment files are ignored by Git; do not commit secrets. `NODE_ENV` is managed by Next.js scripts.
 
+### Contact environment variables
+
+Only the two `NEXT_PUBLIC_*` site keys are public. All other contact variables stay server-side. Set them in `.env.local` and the appropriate Vercel environments; never commit real secrets.
+
+```dotenv
+# Server only — Brevo transactional API, verified sender and internal inbox
+BREVO_API_KEY=
+BREVO_SENDER_EMAIL=no-reply@kamandagroup.com
+BREVO_RECIPIENT_EMAIL=info@kamandagroup.com
+
+# Server only — existing Upstash database and independent random salt (32+ characters)
+UPSTASH_REDIS_REST_URL=
+UPSTASH_REDIS_REST_TOKEN=
+CONTACT_HASH_SALT=
+
+# Public site keys — embedded at build time; redeploy after changing
+NEXT_PUBLIC_RECAPTCHA_V3_SITE_KEY=
+NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY=
+
+# Server only — Google Cloud project and API key
+GCP_PROJECT_ID=
+GOOGLE_RECAPTCHA_API_KEY=
+RECAPTCHA_V3_MIN_SCORE=0.5
+
+# Server only — exact allowed hostnames, comma-separated
+RECAPTCHA_ALLOWED_HOSTNAMES=localhost
+```
+
+Keep the **reCAPTCHA Enterprise API enabled** and restrict `GOOGLE_RECAPTCHA_API_KEY` to **reCAPTCHA Enterprise API**. Use Enterprise score-based (v3) and checkbox (v2) site keys from the configured project. Local `.env.local` uses Dev site keys with `RECAPTCHA_ALLOWED_HOSTNAMES=localhost`; Vercel Production uses Prod site keys with `RECAPTCHA_ALLOWED_HOSTNAMES=kamandagroup.com,www.kamandagroup.com`. An explicit hostname list replaces the default `SITE_URL` hostname. Redeploy after changing public site keys.
+
+`SITE_URL` must match the intended origin; use `http://localhost:3000` for local work. Vercel supplies `VERCEL=1`; do not set it on an untrusted non-Vercel host. Outside Vercel, production IP trust must be adapted explicitly. Full provider setup, no-JavaScript behavior, and failure/retry policies are in [docs/contact.md](docs/contact.md).
+
 ### Scripts
 
 | Command         | Purpose                                                 |
@@ -69,7 +101,7 @@ The proxy records `kamanda-region` on homepage requests and uses `x-vercel-ip-co
 
 ## Page experience
 
-- **Home:** shared photo hero with gold highlights, a diagonal service-card layout from 1024 px, vertically aligned service introduction, synchronized metrics, and the currently disabled enquiry form. Service cards use a two-column tablet layout and a single-column mobile layout.
+- **Home:** shared photo hero with gold highlights, a diagonal service-card layout from 1024 px, vertically aligned service introduction, synchronized metrics, and the secure enquiry form. Service cards use a two-column tablet layout and a single-column mobile layout.
 - **About:** alternating text/photo sections, broader consultancy positioning, “How We Manage Our Projects” process cards, specialist partner information, and regional/global support.
 - **Services:** sticky section navigation beneath the main navbar, directional arrows for sections above/below the current position, a dash for the active section, and alternating desktop content columns.
 - **Shared navigation:** regional home links, active-page states, animated mobile disclosure, keyboard dismissal, and vector brand icons.
@@ -84,7 +116,7 @@ Use `next/image`: the skyline is eager with high fetch priority, and below-fold 
 
 ## Contact and deployment
 
-The contact form is UI only. Its availability notice precedes grouped, labeled fields; all inputs and submission are disabled until a handler is connected. Required/optional guidance, native client-type choices, and associated help text are included. No submission backend, email service, or success state is implemented.
+The contact form uses server-verified reCAPTCHA Enterprise score assessments with checkbox fallback, Upstash Redis rate limits/duplicate protection, and Brevo internal notification plus visitor confirmation. It preserves input on errors and provides accessible loading, inline recovery, and a success panel with reference feedback. Provider configuration is required before sending; unavailable services fail gracefully. See [contact setup, security, error codes, and verified quotas](docs/contact.md).
 
 Deploy to a Next.js-capable platform that supports the Node server and proxy, such as Vercel. A static-only export cannot preserve the cookie-reading shared routes and proxy behavior. Install with `npm ci`, make development dependencies available during the build, configure `SITE_URL`, then build and serve using the scripts above. Google font loading through `next/font/google` needs network access at build time. Production region cookies are secure and require HTTPS. Outside Vercel, geo behavior needs an equivalent trusted country header supplied by the hosting layer; without it, root entry defaults to UAE.
 
@@ -103,7 +135,7 @@ The cause of the reported live-site issue has not yet been confirmed.
 ## Remaining work
 
 - Replace lower-resolution hero and Project Management photos with larger originals when available.
-- Connect an approved enquiry backend before enabling submission.
+- Configure and manually verify Google reCAPTCHA, Upstash, and Brevo before accepting live enquiries.
 - Perform the separate final production/browser/responsive validation pass.
 
 See [contributing](CONTRIBUTING.md), [architecture](docs/architecture.md), and [dependencies](docs/dependencies.md).

@@ -1,6 +1,6 @@
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
-import { Contact } from "@/components/pages/home/contact";
+import { Contact } from "@/components/pages/home/contact/contact";
 import { Hero } from "@/components/ui/hero";
 import { Metrics } from "@/components/pages/home/metrics";
 import { ServicesPreview } from "@/components/pages/home/services-preview";
